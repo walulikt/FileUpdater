@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FileUpdaterRunner {
@@ -19,12 +20,12 @@ public class FileUpdaterRunner {
 			System.out.println("Podaj format plikow w ktorych chcesz dokonac zmiany:");
 			String fileType = sc.nextLine();
 				
-			System.out.println("Podaj ciag bajtow, ktore chcesz zmienic:");
+			System.out.println("Podaj ciag bajtow, ktore chcesz zmienic oddzielone przecinkiem (przyk³ad: 2,50,60,87):");
 			String byteArray1 = sc.next();
 			byte [] userArray1 =conv.convert(byteArray1);
 			sc.nextLine();
 		
-			System.out.println("Podaj ciag bajtow, ktore chcesz wprowadzic:");
+			System.out.println("Podaj ciag bajtow, ktore chcesz wprowadzic:oddzielone przecinkiem (przyk³ad: 2,50,60,87)");
 			String byteArray2 = sc.next();
 			byte [] userArray2 =conv.convert(byteArray2);
 			sc.nextLine();

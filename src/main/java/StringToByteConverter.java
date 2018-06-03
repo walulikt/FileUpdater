@@ -1,3 +1,5 @@
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class StringToByteConverter {
@@ -9,12 +11,10 @@ public class StringToByteConverter {
 
 	public byte[] convert (String input){
 		ArrayList<Byte> bList = new ArrayList<>();
-		String[] inputArray = input.split("");
-		for(String ss : inputArray) {
-			byte[] bArr = ss.getBytes();
-			for(Byte b : bArr) {
-				bList.add(b);
-			}
+		String[] inputArray = input.split(",");
+		byte[] byteArray = new byte[inputArray.length];
+		for (int i=0; i<inputArray.length;i++) {
+			bList.add(i,Byte.valueOf(inputArray[i]));
 		}
 		userArray1 = new byte[bList.size()];
 		for(int i=0; i<bList.size(); i++) {
