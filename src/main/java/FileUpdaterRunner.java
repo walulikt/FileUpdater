@@ -30,7 +30,6 @@ public class FileUpdaterRunner {
 			sc.nextLine();
 		
 			fUApi.findDirectoryByName(directoryName);
-			fUApi.findAllFilesByType(fileType);
 			if (fUApi.findAllFilesByType(fileType)) {
 				fUApi.swopTheBytes(userArray1, userArray2);
 			}

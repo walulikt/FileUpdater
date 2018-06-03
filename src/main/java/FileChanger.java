@@ -49,6 +49,7 @@ public class FileChanger {
 			try {
 				dos = new DataOutputStream(new FileOutputStream(f));
 				dos.write(arraySwap(indexNumber,b,userArray1,userArray2));
+				System.out.println("Dane do pliku " + f.getName() + " zapisane.");
 			} catch (IOException ioe) {
 				System.out.println("Exception while writing file " + ioe);
 			} finally {
@@ -106,6 +107,7 @@ public class FileChanger {
 	private byte[] arraySwap(int indexNumber, byte[] fileArray,byte[] userArray1, byte []userArray2) {
 		int arrIndexNumber=0;
 		if(userArray1.length==userArray2.length) {
+			tempArray = new byte[fileArray.length];
 			for (int i=indexNumber; i<userArray2.length; i++) {
 				fileArray[i] = userArray2[arrIndexNumber];
 				arrIndexNumber++;

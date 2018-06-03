@@ -5,7 +5,7 @@ public class FileUpdaterApi {
 	
 	private Finder finder;
 	private FileChanger fileChanger;
-	private File[] files = File.listRoots();
+	
 		
 	public FileUpdaterApi() {
 		finder = new Finder();
@@ -20,7 +20,8 @@ public class FileUpdaterApi {
 		return fileChanger;
 	}
 
-	public void findDirectoryByName(String directoryName) {	
+	public void findDirectoryByName(String directoryName) {
+		File[] files = File.listRoots();
 		finder.setDirectoryName(directoryName);
 		System.out.println("Szukam wskazanego folderu. To moze potrwac chwile.");
 		for(File f : files){
@@ -36,7 +37,7 @@ public class FileUpdaterApi {
 			finder.fileFinder(finder.getDirectoryPaths().get(i));
 		}
 		if(!finder.getTheFilePaths().isEmpty()) {
-			System.out.println("Znaleziono " + finder.getTheFilePaths().size() + " plików o podanym typie");
+			System.out.println("Znaleziono " + finder.getTheFilePaths().size() + " plikow o podanym typie");
 			return true;
 		}		
 		else return false;		
@@ -45,10 +46,12 @@ public class FileUpdaterApi {
 	public boolean swopTheBytes(byte[] userPattern1, byte [] userPattern2) {
 		for (int i=0; i<finder.getTheFilePaths().size(); i++) {
 			try {
-				fileChanger.fileReader(finder.getTheFilePaths().get(i), userPattern1, userPattern2);
-				System.out.println("Zmiana w pliku " + finder.getTheFilePaths().get(i) + "zosta³a dokonana");
+				if(fileChanger.fileReader(finder.getTheFilePaths().get(i), userPattern1, userPattern2)) {
+					System.out.println("Zmiana w pliku " + finder.getTheFilePaths().get(i) + " zosta³a dokonana");
+				} else System.out.println("Zmiana w pliku" + finder.getTheFilePaths().get(i) + " nie zosta³a dokonana");
+				
 			}catch (IOException ioe){
-				System.out.println("Nie mo¿na dokonac zmian w pliku " + finder.getTheFilePaths().get(i) + ioe);
+				System.out.println("Nie mozna dokonac zmian w pliku " + finder.getTheFilePaths().get(i) + ioe);
 			}
 		}
 		return true;
