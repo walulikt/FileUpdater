@@ -20,14 +20,20 @@ public class FileUpdaterApi {
 		return fileChanger;
 	}
 
-	public void findDirectoryByName(String directoryName) {
+	public boolean findDirectoryByName(String directoryName) {
 		File[] files = File.listRoots();
 		finder.setDirectoryName(directoryName);
 		System.out.println("Szukam wskazanego folderu. To moze potrwac chwile.");
 		for(File f : files){
 			finder.parseAllFiles(f.getPath());
 		}
-		System.out.println("Zakonczono wyszukiwanie folderu.");
+		if(!finder.getDirectoryPaths().isEmpty()) {
+			System.out.println("Zakonczono wyszukiwanie folderu." + '\n'+"Znaleziono folderów o podanej nazwie: "+ finder.getDirectoryPaths().size());
+			return true;
+		}else {
+			System.out.println("Nie znaleziono ¿adnego folderu o nazwie " + directoryName + ". Wprowadz dane ponownie");
+			return false;
+		}
 	}
 	
 	public boolean findAllFilesByType(String fileType) {
@@ -40,7 +46,10 @@ public class FileUpdaterApi {
 			System.out.println("Znaleziono " + finder.getTheFilePaths().size() + " plikow o podanym typie");
 			return true;
 		}		
-		else return false;		
+		else {
+			System.out.println("Nie znaleziono plików typu: " + fileType + " we wskazanym folderze."); 
+			return false;		
+		}
 	}
 	
 	public boolean swopTheBytes(byte[] userPattern1, byte [] userPattern2) {

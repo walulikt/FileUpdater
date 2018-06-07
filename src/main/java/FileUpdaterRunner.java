@@ -73,12 +73,13 @@ public class FileUpdaterRunner {
 				}
 			}
 		
-			fUApi.findDirectoryByName(directoryName);
-			if (fUApi.findAllFilesByType(fileType)) {
-				fUApi.swopTheBytes(userArray1, userArray2);
+			if(fUApi.findDirectoryByName(directoryName)) {
+				if (fUApi.findAllFilesByType(fileType)) {
+					fUApi.swopTheBytes(userArray1, userArray2);
+				}
 			}
 			
-			System.out.println("Koniec sesji. Jesli chcesz zakonczycz program wcisnij 'n', jesli nie to wcisnij cokolwiek.");
+			System.out.println("Koniec sesji. Jesli chcesz zakonczycz program wcisnij 'n', jesli chcesz sprobowac ponownie to wcisnij cokolwiek.");
 			String userInput = sc.nextLine();
 			if(userInput.equals("n")) {
 				System.out.println("Dziekuje za skorzystanie z programu. Zapraszam ponownie");
