@@ -29,33 +29,33 @@ public class FileUpdaterRunner {
 			} 
 				
 			System.out.println("Podaj ciag bajtow, ktore chcesz zmienic w pliku (przyk³ad: 2 50 60 87):");
-			String byteArray1 = sc.nextLine();
-			byte [] userArray1 = null;
-			while(byteArray1.isEmpty()) {
+			String userArray1 = sc.nextLine();
+			byte [] byteArray1 = null;
+			while(userArray1.isEmpty()) {
 				System.out.println("Ci¹g bajtów nie mo¿e byæ pusty. Wprowadz ci¹g bajtów");
-				byteArray1 = sc.nextLine();
+				userArray1 = sc.nextLine();
 			}
 			while(!arrayConverted) {
 				try {
-					userArray1 =conv.convert(byteArray1);
+					byteArray1 =conv.convert(userArray1);
 					arrayConverted=true;
 				} catch (NumberFormatException e) {
 					System.out.println(e.toString()+'\n'+"Podany ci¹g zawiera b³êdny format lub wychodzi poza zakres wartoœci bajta. Wprowadz ponownie: ");
-					byteArray1 = sc.nextLine();
-					while(byteArray1.isEmpty()) {
+					userArray1 = sc.nextLine();
+					while(userArray1.isEmpty()) {
 						System.out.println("Ci¹g bajtów nie mo¿e byæ pusty. Wprowadz ci¹g bajtów");
-						byteArray1 = sc.nextLine();
+						userArray1 = sc.nextLine();
 					}
 					arrayConverted=false;
 				}
 			}
 		
-			System.out.println("Podaj ciag bajtow, ktore chcesz wprowadzic do pliku (przyk³ad: 2 50 60 87):");
+			System.out.println("Podaj ciag bajtow, ktore chcesz wprowadzic do pliku (przyk³ad: 87 60 50 2):");
 			String byteArray2 = sc.nextLine();
 			byte [] userArray2 =null;
-			while(byteArray1.isEmpty()) {
+			while(userArray1.isEmpty()) {
 				System.out.println("Ci¹g bajtów nie mo¿e byæ pusty. Wprowadz ci¹g bajtów");
-				byteArray1 = sc.nextLine();
+				userArray1 = sc.nextLine();
 			}
 			arrayConverted=false;
 			while(!arrayConverted) {
@@ -65,9 +65,9 @@ public class FileUpdaterRunner {
 				} catch (NumberFormatException e) {
 					System.out.println(e.toString()+'\n'+"Podany ci¹g zawiera b³êdny format lub wychodzi poza zakres wartoœci bajta. Wprowadz ponownie: ");
 					byteArray2 = sc.nextLine();
-					while(byteArray1.isEmpty()) {
+					while(userArray1.isEmpty()) {
 						System.out.println("Ci¹g bajtów nie mo¿e byæ pusty. Wprowadz ci¹g bajtów");
-						byteArray1 = sc.nextLine();
+						userArray1 = sc.nextLine();
 					}
 					arrayConverted=false;
 				}
@@ -75,7 +75,7 @@ public class FileUpdaterRunner {
 		
 			if(fUApi.findDirectoryByName(directoryName)) {
 				if (fUApi.findAllFilesByType(fileType)) {
-					fUApi.swopTheBytes(userArray1, userArray2);
+					fUApi.swopTheBytes(byteArray1, userArray2);
 				}
 			}
 			

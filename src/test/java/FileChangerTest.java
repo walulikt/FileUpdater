@@ -13,9 +13,11 @@ public class FileChangerTest {
 		//Given
 		FileChanger changer = new FileChanger();
 		String pathBinFile = "E:\\FolderTestowy\\PodFolderTestowy\\";
-		byte[] userArray1 = new byte[]{1,23,94};
+		byte[] fileArray = new byte[] {12,45,2,2,1,2,2,2,1};
+		byte[] userArray1 = new byte[]{2,1,2,2,2};
 		byte[] userArray2 = new byte[]{2,46,96};
 		
+				
 		File file = null;
 	      try {
 	         file = File.createTempFile("tmp", ".bin", new File(pathBinFile));
@@ -31,7 +33,7 @@ public class FileChangerTest {
 	      DataOutputStream dos = null;
 	      try {
 	    	  dos = new DataOutputStream(new FileOutputStream(file));
-	    	  dos.write(userArray1);
+	    	  dos.write(fileArray);
 	      } catch (IOException ioe) {
 	    	  System.out.println("Exception while writing file " + ioe);
 	      } finally {
