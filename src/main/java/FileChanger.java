@@ -69,7 +69,20 @@ public class FileChanger {
 		return true;
 	}
 	
-	private int byteArrayComparator ( byte[] fileArray, byte[] userArray1) {
+	private int byteArrayComparator(byte[] fileArray, byte[] userArray1) {
+	    for(int i = 0; i < fileArray.length - userArray1.length+1; ++i) {
+	        boolean found = true;
+	        for(int j = 0; j < userArray1.length; ++j) {
+	           if (fileArray[i+j] != userArray1[j]) {
+	               found = false;
+	               break;
+	           }
+	        }
+	        if (found) return i;
+	     }
+	   return -1;  
+	}  
+	/*private int byteArrayComparator ( byte[] fileArray, byte[] userArray1) {
 		int[] failure = computeFailure(userArray1);
 
         int j = 0;
@@ -102,21 +115,9 @@ public class FileChanger {
         }
 
         return failure;
-    }
+    }*/
 
-	/*private int byteArrayComparator(byte[] fileArray, byte[] userArray1) {
-	    for(int i = 0; i < fileArray.length - userArray1.length+1; ++i) {
-	        boolean found = true;
-	        for(int j = 0; j < userArray1.length; ++j) {
-	           if (fileArray[i+j] != smauserArray1llerArray[j]) {
-	               found = false;
-	               break;
-	           }
-	        }
-	        if (found) return i;
-	     }
-	   return -1;  
-	}  */
+	
 	
 	private byte[] arraySwap(int indexNumber, byte[] fileArray,byte[] userArray1, byte []userArray2) {
 		int arrIndexNumber=0;
