@@ -1,40 +1,94 @@
 
-
-import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
 	
-	//private TextPanel textPanel;
-	//private Toolbar toolbar;
 	private JButton btn;
+	private TextArea apiDescriptionTextField;
 	private TextField directoryTextField;
 	private TextField fileTypeField;
+	private TextField bayteArray1Field;
+	private TextField bayteArray2Field;
+	private String description = "Witam programisto. Wlasnie uruchomiles program, który zmieni Twoj swiat.\n" +  
+			"Teraz bêdziesz mogl podac nazwe folderu w ktorym sa pliki o rozszerzeniu,\n"+ 
+			"które Cie interesuje, a na koniec zamienic wskazany ciag bajtów w tych plikach na taki jaki wskazesz.\n"+
+			"Po wpisaniu wszystkich danych wciœnij przycis 'Wykonaj Zadanie!' i poczekaj, a¿ wyœwietli siê informacja o wykonaniu zadania.";
+	private String directoryName;
+	private String fileType;
+	private String byteArray1;
+	private String byteArray2;
+	private StringListener stringListener;
 	
+	public TextField getDirectoryTextField() {
+		return directoryTextField;
+	}
+
+	public TextField getFileTypeField() {
+		return fileTypeField;
+	}
+
+	public TextField getBayteArray1Field() {
+		return bayteArray1Field;
+	}
+
+	public TextField getBayteArray2Field() {
+		return bayteArray2Field;
+	}
+
 	public MainFrame() {
 		super ("File Updater");
-		setLayout(new BorderLayout());
-		
-		btn = new JButton("Wykonaj Zadanie!");
-		directoryTextField = new DataField();
-		directoryTextField.setText("Folder");
-		fileTypeField = new DataField();
-		fileTypeField.setText("Typ Pliku");
-		fileTypeField.setSize(100, 100);
-		//directoryTextField.setText("Tutaj wpisz nazwê szukanego katalogu");
-		
-		add(btn, BorderLayout.SOUTH);
-		add(directoryTextField, BorderLayout.NORTH);
-		add(fileTypeField,BorderLayout.CENTER);
-		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(600, 500);		
+		setSize(800, 600);
+		setLayout(new GridLayout(6,1));
+		
+		apiDescriptionTextField = new TextArea();
+		apiDescriptionTextField.setText(description);
+		apiDescriptionTextField.setEditable(false);
+		
+		directoryTextField = new DataField();
+		directoryTextField.setText("Tutaj wpisz nazwê szukanego katalogu.");
+		
+		fileTypeField = new DataField();
+		fileTypeField.setText("Tutaj wpisz typ szukanego pliku (np. .bat).");
+		
+		bayteArray1Field=new DataField();
+		bayteArray1Field.setText("Podaj ci¹g bajtów, który chcesz wyszukaæ  i zmienic w pliku w formie: 10 22 34 80.");
+		
+		bayteArray2Field=new DataField();
+		bayteArray2Field.setText("Podaj ci¹g bajtów na który chcesz zamieñ wy¿ej wymieniony ci¹g w formie: 80 34 22 10.");
+				
+		btn = new JButton("Wykonaj Zadanie!");
+		/*btn.addActionListener(new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+				directoryName=directoryTextField.getText();
+				fileType=fileTypeField.getText();
+				byteArray1=bayteArray1Field.getText();
+				byteArray2=bayteArray2Field.getText();
+		
+			}
+		});*/
+		
+		add(apiDescriptionTextField);
+		add(new JScrollPane(directoryTextField));
+		add(new JScrollPane(fileTypeField));
+		add(new JScrollPane(bayteArray1Field));
+		add(new JScrollPane(bayteArray2Field));
+		add(btn);			
+	}
+	
+	public JButton getBtn() {
+		return btn;
 	}
 
 	
+
 }

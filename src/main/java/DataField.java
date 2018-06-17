@@ -1,12 +1,14 @@
 
+import java.awt.Dimension;
 import java.awt.TextField;
 
 public class DataField extends TextField {
 	
 	public DataField() {
-		setVisible(true);
+		/*setVisible(true);
 		setEditable(true);
-		setSize(500,250);
+		setSize(new Dimension (50,50));*/
 	}
+	
 
 }
