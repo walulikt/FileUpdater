@@ -59,8 +59,9 @@ public class FileUpdaterRunner {
 									}
 								} 
 								if(arrayConverted==true&&fUApi.findDirectoryByName(directoryName)) {
-									JOptionPane.showMessageDialog(null, "Program wyszukuje folderu i plików. Proszê czekaæ.");
+									JOptionPane.showMessageDialog(null, "Program wyszuka³ foldery w nastêpuj¹cych lokalizacjach: \n"+ fUApi.getFinder().toString(fUApi.getFinder().getDirectoryPaths()));
 									if (fUApi.findAllFilesByType(fileType)) {
+										JOptionPane.showMessageDialog(null, "Program wyszuka³ pliki w nastêpuj¹cych lokalizacjach: \n"+ fUApi.getFinder().toString(fUApi.getFinder().getTheFilePaths()));
 										fUApi.swopTheBytes(byteArray1, userArray2);
 										JOptionPane.showMessageDialog(null, "Zadanie zakoñczone sukcesem.");
 									}

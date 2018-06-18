@@ -33,8 +33,7 @@ public class Finder {
         			if(f.getName().equals(directoryName)) {
         				directoryPaths.add(f.getAbsolutePath());	
         			}
-        		} else continue;	
-//        	System.out.println("Current File -> " + f);             
+        		} else continue;          
         	}
         }        
 	}
@@ -54,5 +53,14 @@ public class Finder {
 					}
 				}
 			}
+	}
+	
+	public String toString(ArrayList<String> pathsList) {
+		StringBuilder strBuilder = new StringBuilder();
+		for(int i=0; i<pathsList.size(); i++) {
+			System.out.println(pathsList.get(i).toString());
+			strBuilder.append(pathsList.get(i).toString() +'\n');
+		}
+		return strBuilder.toString();
 	}
 }
