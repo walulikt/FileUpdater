@@ -2,9 +2,6 @@
 import java.awt.GridLayout;
 import java.awt.TextArea;
 import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -21,12 +18,7 @@ public class MainFrame extends JFrame {
 			"Teraz bêdziesz mogl podac nazwe folderu w ktorym sa pliki o rozszerzeniu,\n"+ 
 			"które Cie interesuje, a na koniec zamienic wskazany ciag bajtów w tych plikach na taki jaki wskazesz.\n"+
 			"Po wpisaniu wszystkich danych wciœnij przycis 'Wykonaj Zadanie!' i poczekaj, a¿ wyœwietli siê informacja o wykonaniu zadania.";
-	private String directoryName;
-	private String fileType;
-	private String byteArray1;
-	private String byteArray2;
-	private StringListener stringListener;
-	
+		
 	public TextField getDirectoryTextField() {
 		return directoryTextField;
 	}
@@ -54,28 +46,19 @@ public class MainFrame extends JFrame {
 		apiDescriptionTextField.setText(description);
 		apiDescriptionTextField.setEditable(false);
 		
-		directoryTextField = new DataField();
+		directoryTextField = new TextField();
 		directoryTextField.setText("Tutaj wpisz nazwê szukanego katalogu.");
 		
-		fileTypeField = new DataField();
+		fileTypeField = new TextField();
 		fileTypeField.setText("Tutaj wpisz typ szukanego pliku (np. .bat).");
 		
-		bayteArray1Field=new DataField();
+		bayteArray1Field=new TextField();
 		bayteArray1Field.setText("Podaj ci¹g bajtów, który chcesz wyszukaæ  i zmienic w pliku w formie: 10 22 34 80.");
 		
-		bayteArray2Field=new DataField();
+		bayteArray2Field=new TextField();
 		bayteArray2Field.setText("Podaj ci¹g bajtów na który chcesz zamieñ wy¿ej wymieniony ci¹g w formie: 80 34 22 10.");
 				
 		btn = new JButton("Wykonaj Zadanie!");
-		/*btn.addActionListener(new ActionListener () {
-			public void actionPerformed(ActionEvent e) {
-				directoryName=directoryTextField.getText();
-				fileType=fileTypeField.getText();
-				byteArray1=bayteArray1Field.getText();
-				byteArray2=bayteArray2Field.getText();
-		
-			}
-		});*/
 		
 		add(apiDescriptionTextField);
 		add(new JScrollPane(directoryTextField));
@@ -88,7 +71,4 @@ public class MainFrame extends JFrame {
 	public JButton getBtn() {
 		return btn;
 	}
-
-	
-
 }
