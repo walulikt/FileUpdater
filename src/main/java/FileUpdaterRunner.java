@@ -36,27 +36,35 @@ public class FileUpdaterRunner {
 						
 						if(MF.getDirectoryTextField().getText().length()>10) {
 							JOptionPane.showMessageDialog(null, "Zbyt d³uga nazwa folderu. \n Podaj now¹ nazwê szukanego folderu");
-						} else {
-							
-							if(!MF.getFileTypeField().getText().startsWith(".")&&MF.getFileTypeField().getText().length()>5) {
-								JOptionPane.showMessageDialog(null,"Typ szukanych plików powinien zaczynaæ siê od '.' lub nazwa jest za d³uga");
+						} else if(MF.getDirectoryTextField().getText()==null||
+								MF.getDirectoryTextField().getText().isEmpty()){
+							JOptionPane.showMessageDialog(null, "Nie wprowadzono nazwy folderu");
+						}else {
+							if(!MF.getFileTypeField().getText().startsWith(".")||
+									MF.getFileTypeField().getText()==null||
+									MF.getFileTypeField().getText().isEmpty()) {
+								JOptionPane.showMessageDialog(null,"Typ szukanych plików powinien zaczynaæ siê od '.' lub nie wprowadzono danych");
 							} else {
 								fileType=MF.getFileTypeField().getText();
-								try {
-									byteArray1 =conv.convert(userArray1);
-									arrayConverted=true;
-								} catch (NumberFormatException ex) {
-									arrayConverted=false;
-									JOptionPane.showMessageDialog(null,ex.toString()+'\n'+"Pierwszy ci¹g bajtów zawiera b³êdny format lub wychodzi poza zakres wartoœci bajta. Wprowadz ponownie:");
-								}
-								if(arrayConverted==true) {
+								if(userArray1!=null&&!userArray1.isEmpty()) {
 									try {
-										userArray2 =conv.convert(byteArray2);
+										byteArray1 =conv.convert(userArray1);
 										arrayConverted=true;
-									} catch (NumberFormatException exc) {
-										JOptionPane.showMessageDialog( null,exc.toString()+'\n'+"Drugi ci¹g bajtów zawiera b³êdny format lub wychodzi poza zakres wartoœci bajta. Wprowadz ponownie: ");
+									} catch (NumberFormatException ex) {
 										arrayConverted=false;
+										JOptionPane.showMessageDialog(null,ex.toString()+'\n'+"Pierwszy ci¹g bajtów zawiera b³êdny format lub wychodzi poza zakres wartoœci bajta. Wprowadz ponownie:");
 									}
+								} else JOptionPane.showMessageDialog(null,"Ci¹g bajtów nie mo¿e byæ pusty.");
+								if(arrayConverted==true) {
+									if(userArray1!=null&&!userArray1.isEmpty()) {
+										try {
+											userArray2 =conv.convert(byteArray2);
+											arrayConverted=true;
+										} catch (NumberFormatException exc) {
+											JOptionPane.showMessageDialog( null,exc.toString()+'\n'+"Drugi ci¹g bajtów zawiera b³êdny format lub wychodzi poza zakres wartoœci bajta. Wprowadz ponownie: ");
+											arrayConverted=false;
+										}
+									} else JOptionPane.showMessageDialog(null,"Ci¹g bajtów nie mo¿e byæ pusty.");
 								} 
 								if(arrayConverted==true&&fUApi.findDirectoryByName(directoryName)) {
 									JOptionPane.showMessageDialog(null, "Program wyszuka³ foldery w nastêpuj¹cych lokalizacjach: \n"+ fUApi.getFinder().toString(fUApi.getFinder().getDirectoryPaths()));
