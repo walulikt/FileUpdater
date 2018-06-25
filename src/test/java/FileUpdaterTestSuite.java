@@ -20,14 +20,15 @@ public class FileUpdaterTestSuite {
 	}*/
 
 	@Test
-	public void findAllFilesByTypeTest() {
+	public void testFinderRunner() {
 		//Given
 		FileUpdaterApi fUApi = new FileUpdaterApi();
+		String discName = "e";
+		String directoryName = "PodFolderTestowy";
 		String fileType = ".txt";
-		String directoryPath = "E:\\FolderTestowy";
-		fUApi.getFinder().getDirectoryPaths().add(directoryPath);
+		
 		//When
-		fUApi.findAllFilesByType(fileType);
+		fUApi.finderRunner(discName, directoryName, fileType);
 		
 		//Then
 		System.out.println(fUApi.getFinder().getTheFilePaths().get(0).toString());

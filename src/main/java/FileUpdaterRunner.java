@@ -19,7 +19,13 @@ public class FileUpdaterRunner {
 			while(directoryName.isEmpty()) {
 				System.out.println("Musisz wprowadzic nazwê folderu: ");
 				directoryName = sc.nextLine();
-			} 
+			}
+			System.out.println("Podaj dysk, który ma byæ przeszukany(np.: C), lub wciœnij  ENTER to przeszukane zostan¹ wszystkie dyski: ");
+			String discName = sc.nextLine();
+			while(discName.length()>1||!Character.isLetter(discName.charAt(0))) {
+				System.out.println("Mo¿na podaæ tylko jeden dysk lub naciœnij ENTER to przeszukane zostan¹ wszystkie dyski. Wprowadz dysk: ");
+				discName = sc.nextLine();
+			}
 				
 			System.out.println("Podaj format plikow w ktorych chcesz dokonac zmiany:");
 			String fileType = sc.nextLine();
@@ -73,10 +79,8 @@ public class FileUpdaterRunner {
 				}
 			}
 		
-			if(fUApi.findDirectoryByName(directoryName)) {
-				if (fUApi.findAllFilesByType(fileType)) {
-					fUApi.swopTheBytes(byteArray1, userArray2);
-				}
+			if(fUApi.finderRunner(discName, directoryName, fileType)) {
+				fUApi.swopTheBytes(byteArray1, userArray2);
 			}
 			
 			System.out.println("Koniec sesji. Jesli chcesz zakonczycz program wcisnij 'n', jesli chcesz sprobowac ponownie to wcisnij cokolwiek.");
